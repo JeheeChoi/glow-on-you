@@ -37,9 +37,14 @@ class Glows(generics.ListCreateAPIView):
       return Response(glow.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class GlowDetail(generics.RetrieveUpdateDestroyAPIView):
+    # def get(self, request, pk):
     def get(self, request, pk):
       """Show request"""
       glow = get_object_or_404(Glow, pk=pk)
+      # glow = Glow.objects.filter(board_id=board_id, pk=pk)
+
+      # glow = get_object_or_404(Glow, pk=pk)
+
       data = GlowSerializer(glow).data
       return Response({ 'glow': data })
 
